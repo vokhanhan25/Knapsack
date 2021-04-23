@@ -8,10 +8,15 @@ using namespace std;
 
 int myrandom (int i) { return std::rand()%i;}
 
-vector<int> values = {60, 100, 120};
+vector<int> values = {360, 83, 59, 130, 431, 67, 230, 52, 93, 125, 670, 892, 600, 38, 48, 147,
+        78, 256, 63, 17, 120, 164, 432, 35, 92, 110, 22, 42, 50, 323, 514, 28,
+        87, 73, 78, 15, 26, 78, 210, 36, 85, 189, 274, 43, 33, 10, 19, 389, 276,
+        312};
 
-vector<int> weights {10, 20, 30};
-int capacities = 50;
+vector<int> weights {7, 0, 30, 22, 80, 94, 11, 81, 70, 64, 59, 18, 0, 36, 3, 8, 15, 42, 9, 0,
+        42, 47, 52, 32, 26, 48, 55, 6, 29, 84, 2, 4, 18, 56, 7, 29, 93, 44, 71,
+        3, 86, 66, 31, 65, 0, 79, 20, 65, 52, 13};
+int capacities = 850;
 
 
 void Generate(vector<vector<int>> &a, const int &m, const int &n) {
@@ -73,7 +78,7 @@ void TournamentSelection(vector<vector<int>> &parents, vector<int> &fitness_pare
     fitness_parents.shrink_to_fit();
     for (int k = 0; k < 2; k++) {
         vector<int> si(2 * m);
-        iota(si.begin(), si.end(), 1);
+        iota(si.begin() + 1, si.end(), 1);
         srand(unsigned(time(0)));
         random_shuffle (si.begin(),si.end());
         random_shuffle (si.begin(),si.end(), myrandom);
@@ -95,7 +100,7 @@ void TournamentSelection(vector<vector<int>> &parents, vector<int> &fitness_pare
 }
 
 int main() {
-    int populationSize = 30, individualSize = values.size();
+    int populationSize = 5000, individualSize = values.size();
     vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
 
     vector<int> fitness_offspring, fitness_pool, fitness_parents;
@@ -124,13 +129,12 @@ int main() {
     // Print(parents, populationSize, individualSize);
     // cout << "/--------/\n";
 
-    while(ep < 100) {
+    while(ep < 300) {
         offspring = OnepointCrossover(parents, populationSize, individualSize);
 
         // Print(offspring, populationSize, individualSize);
         // cout << "/--------/\n\n";
         pool = Pool(parents, offspring);
-        cout << pool.size() << "\n";
         // Print(parents, populationSize, individualSize);
         // cout << "/--------/\n\n";
 
