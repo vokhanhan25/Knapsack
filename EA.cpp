@@ -53,6 +53,21 @@ vector<vector<int>> OnepointCrossover(vector<vector<int>> a, const int &m, const
     return b;
 }
 
+vector<vector<int>> UniformCrossover(vector<vector<int>> a, const int &m, const int &n) {
+    vector<vector<int>> b = a;
+    int i = 0;
+    while (i < m - 1) {
+        for (int j = 0; j < n; j++) 
+            if ((double) rand() / (RAND_MAX) < 0.5) {
+                int tm = b[i][j];
+                b[i][j] = b[i + 1][j];
+                b[i + 1][j] = tm;
+            }
+        i += 2;
+    }
+    return b;
+}
+
 vector<vector<int>> Pool(vector<vector<int>> a, vector<vector<int>> b) {
     vector<vector<int>> tm = a;
     tm.insert( tm.end(), b.begin(), b.end() );
@@ -99,6 +114,20 @@ void TournamentSelection(vector<vector<int>> &parents, vector<int> &fitness_pare
     }
 }
 
+bool Compare2Individual(vector<int> a, vector<int> b, int n) {
+    for (int i = 0; i < n; i++)
+        if (a[i] != b[i])
+            return false;
+        return true;
+}
+
+bool CheckConvergence(vector<vector<int>> a, int m, int n) {
+    for (int i = 0; i < m - 1; i++)
+        if (!Compare2Individual(a[i], a[i + 1], n))
+            return false;
+    return true;
+}
+
 int main() {
     int populationSize = 5000, individualSize = values.size();
     vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
@@ -129,11 +158,9 @@ int main() {
     // Print(parents, populationSize, individualSize);
     // cout << "/--------/\n";
 
-    while(ep < 300) {
-        offspring = OnepointCrossover(parents, populationSize, individualSize);
-
-        // Print(offspring, populationSize, individualSize);
-        // cout << "/--------/\n\n";
+    while(!CheckConvergence(parents, populationSize, individualSize)) {
+        // offspring = OnepointCrossover(parents, populationSize, individualSize);
+        offspring = UniformCrossover(parents, populationSize, individualSize);
         pool = Pool(parents, offspring);
         // Print(parents, populationSize, individualSize);
         // cout << "/--------/\n\n";
@@ -159,11 +186,15 @@ int main() {
         ep++;
     }
     
-    for (int i = 0; i < populationSize; i++) {
-        for (int j = 0; j < individualSize; j++)
-            cout << parents[i][j] << " ";
-        cout << " /-----/ ";
-        cout << fitness_parents[i] << "\n";
-    }
-    // cout << "Done!\n";
+    // for (int i = 0; i < populationSize; i++) {
+    //     for (int j = 0; j < individualSize; j++)
+    //         cout << parents[i][j] << " ";
+    //     cout << " /-----/ ";
+    //     cout << fitness_parents[i] << "\n";
+    // }
+    for (int j = 0; j < individualSize; j++)
+        cout << parents[0][j] << " ";
+    cout << " /-----/ ";
+    cout << fitness_parents[0] << "\n";
+    cout << ep << "\n";
 }
