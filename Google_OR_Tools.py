@@ -26,7 +26,7 @@ def main():
             values.append((int)(x))
             weights[0].append((int)(y))
 
-        # solver.set_time_limit(0.00000001)
+        solver.set_time_limit(300)
         solver.Init(values, weights, capacities)
     
         computed_value = solver.Solve()
