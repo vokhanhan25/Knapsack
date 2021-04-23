@@ -95,7 +95,7 @@ void TournamentSelection(vector<vector<int>> &parents, vector<int> &fitness_pare
 }
 
 int main() {
-    int populationSize = 6, individualSize = values.size();
+    int populationSize = 30, individualSize = values.size();
     vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
 
     vector<int> fitness_offspring, fitness_pool, fitness_parents;
@@ -124,7 +124,7 @@ int main() {
     // Print(parents, populationSize, individualSize);
     // cout << "/--------/\n";
 
-    while(ep < 10) {
+    while(ep < 100) {
         offspring = OnepointCrossover(parents, populationSize, individualSize);
 
         // Print(offspring, populationSize, individualSize);
@@ -155,11 +155,11 @@ int main() {
         ep++;
     }
     
-    // for (int i = 0; i < populationSize; i++) {
-    //     for (int j = 0; j < individualSize; j++)
-    //         cout << parents[i][j] << " ";
-    //     cout << " /-----/ ";
-    //     cout << fitness_parents[i] << "\n";
-    // }
-    cout << "Done!\n";
+    for (int i = 0; i < populationSize; i++) {
+        for (int j = 0; j < individualSize; j++)
+            cout << parents[i][j] << " ";
+        cout << " /-----/ ";
+        cout << fitness_parents[i] << "\n";
+    }
+    // cout << "Done!\n";
 }
