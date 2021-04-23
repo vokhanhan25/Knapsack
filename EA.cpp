@@ -73,7 +73,7 @@ void TournamentSelection(vector<vector<int>> &parents, vector<int> &fitness_pare
     fitness_parents.shrink_to_fit();
     for (int k = 0; k < 2; k++) {
         vector<int> si(2 * m);
-        iota(si.begin(), si.end(), 1);
+        iota(si.begin() + 1, si.end(), 1);
         srand(unsigned(time(0)));
         random_shuffle (si.begin(),si.end());
         random_shuffle (si.begin(),si.end(), myrandom);
