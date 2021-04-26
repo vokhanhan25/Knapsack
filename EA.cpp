@@ -4,22 +4,22 @@
 #include <stdlib.h>
 #include <random>
 #include <bits/stdc++.h>
+#include "data.cpp"
+
 using namespace std;
 
 int myrandom (int i) { return std::rand()%i;}
 
-vector<int> values = {360, 83, 59, 130, 431, 67, 230, 52, 93, 125, 670, 892, 600, 38, 48, 147,
-        78, 256, 63, 17, 120, 164, 432, 35, 92, 110, 22, 42, 50, 323, 514, 28,
-        87, 73, 78, 15, 26, 78, 210, 36, 85, 189, 274, 43, 33, 10, 19, 389, 276,
-        312};
+// vector<int> values = {732,915,38,5,994,319,197,499,552,740,609,545,757,262,468,892,726,604,126,939,44,811,150,500,688,536,12,203,423,293,113,122,732,545,466,30,763,990,728,481,712,630,136,549,616,191,265,319,369,309,958,884,489,173,922,849,17,814,13,853,595,927,636,145,528,889,391,620,355,666,351,271,6,921,608,892,693,309,71,974,915,904,377,591,751,329,264,260,500,404,867,820,135,291,455,955,837,440,825,125};
+// vector<int> values = {60, 100, 120};
+// vector<int> weights = {10, 20, 30};
+// vector<int> weights{77,908,178,827,913,429,343,41,32,945,871,110,365,669,359,20,937,550,281,902,342,994,677,928,368,608,776,556,596,618,964,917,455,332,792,529,308,341,245,263,482,384,119,892,314,933,696,963,698,946,477,717,620,45,943,759,87,701,646,967,508,88,485,516,550,458,35,427,240,945,325,969,353,369,7,817,86,734,685,562,315,907,757,390,830,11,773,111,599,726,934,97,732,743,569,143,931,36,635,167};
+// int capacities = 26396;
+// int capacities = 50;
+int capacities;
+vector<int> values, weights;
 
-vector<int> weights {7, 0, 30, 22, 80, 94, 11, 81, 70, 64, 59, 18, 0, 36, 3, 8, 15, 42, 9, 0,
-        42, 47, 52, 32, 26, 48, 55, 6, 29, 84, 2, 4, 18, 56, 7, 29, 93, 44, 71,
-        3, 86, 66, 31, 65, 0, 79, 20, 65, 52, 13};
-int capacities = 850;
-
-
-void Generate(vector<vector<int>> &a, const int &m, const int &n) {
+void Generate(vector<vector<int>> &a, const int &m,const int &n) {
     for (int i = 0; i < m; i++)
         for (int j = 0; j < n; j++) {
             double randNum = (float) rand()/RAND_MAX;
@@ -128,73 +128,86 @@ bool CheckConvergence(vector<vector<int>> a, int m, int n) {
     return true;
 }
 
+void Mutation(vector<vector<int>> &pool, vector<int> &fitness_pool, int m, int n, double p) {
+    for (int i = 0; i < m; i++) 
+        for (int j = 0; j < n; j++)
+            if ((double) rand() / (RAND_MAX) < p) {
+                if (pool[i][j] == 1) {
+                    pool[i][j] = 0;
+                    fitness_pool[i] -= values[j];
+                }
+                else {
+                    pool[i][j] = 1;
+                    fitness_pool[i] += values[j];
+                }
+            }
+}
+
 int main() {
-    int populationSize = 5000, individualSize = values.size();
-    vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
-
-    vector<int> fitness_offspring, fitness_pool, fitness_parents;
-    vector<vector<int>> offspring, pool;
-    
-    srand (time(NULL));
-    Generate(parents, populationSize, individualSize);
-    // Print(parents, populationSize, individualSize);
-    // cout << "/--------------------------/\n";
-    
-    // vector<vector<int>> b;
-    // b = OnepointCrossover(parents, populationSize, individualSize);
-    // Print(b, populationSize, individualSize);
-    // cout << "/--------------------------/\n";
-
-    // vector<vector<int>> c;
-    // c = Pool(parents, b);
-    // Print(c, populationSize * 2, individualSize);
-
-    // cout << "/--------------------------/\n";
-    // Print(b, populationSize, individualSize);
-
-    // cout << "/--------------------------/\n";
-
-    int ep = 0;
-    // Print(parents, populationSize, individualSize);
-    // cout << "/--------/\n";
-
-    while(!CheckConvergence(parents, populationSize, individualSize)) {
-        // offspring = OnepointCrossover(parents, populationSize, individualSize);
-        offspring = UniformCrossover(parents, populationSize, individualSize);
-        pool = Pool(parents, offspring);
-        // Print(parents, populationSize, individualSize);
-        // cout << "/--------/\n\n";
-
-        // for (int i = 0; i < populationSize; i++)
-        //     cout << fitness_parents[i] << " ";
-        // cout << "------------------\n";
-
-        fitness_parents.clear();
-        fitness_parents.shrink_to_fit();
-        fitness_offspring.clear();
-        fitness_offspring.shrink_to_fit();
-        for (int i = 0; i < populationSize; i++) {
-            fitness_parents.push_back(ValueMax(parents[i], individualSize));
-            fitness_offspring.push_back(ValueMax(offspring[i], individualSize));
-        }
-    
-        fitness_pool = fitness_parents;
-        fitness_pool.insert(fitness_pool.end(), fitness_offspring.begin(), fitness_offspring.end());
+    vector<string> inp = input_data();
+    int individualSize, populationSize, v, w;
+    double probMutation = 0.01;
+    for (int file_index = 0; file_index < 8; file_index++) {
+        char* file_name = &inp[file_index][0];
+        freopen(file_name, "r", stdin);
+        cin >> individualSize;
+        cin >> capacities;
         
+        values.clear();
+        values.shrink_to_fit();
+        weights.clear();
+        weights.shrink_to_fit();
+
+        for (int i = 0; i < individualSize; i++) {
+            cin >> v >> w;
+            values.push_back(v);
+            weights.push_back(w);
+        }
+        populationSize = individualSize * 5;
         // return 0;
-        TournamentSelection(parents, fitness_parents, pool, fitness_pool, populationSize);
-        ep++;
-    }
-    
-    // for (int i = 0; i < populationSize; i++) {
-    //     for (int j = 0; j < individualSize; j++)
-    //         cout << parents[i][j] << " ";
-    //     cout << " /-----/ ";
-    //     cout << fitness_parents[i] << "\n";
-    // }
-    for (int j = 0; j < individualSize; j++)
+        vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
+
+        vector<int> fitness_offspring, fitness_pool, fitness_parents;
+        vector<vector<int>> offspring, pool;
+        
+        srand (time(NULL));
+        Generate(parents, populationSize, individualSize);
+        int ep = 0;
+        while(!CheckConvergence(parents, populationSize, individualSize)) {
+            // offspring = OnepointCrossover(parents, populationSize, individualSize);
+            offspring = UniformCrossover(parents, populationSize, individualSize);
+            pool = Pool(parents, offspring);
+            // Print(parents, populationSize, individualSize);
+            // cout << "/--------/\n\n";
+
+            // for (int i = 0; i < populationSize; i++)
+            //     cout << fitness_parents[i] << " ";
+            // cout << "------------------\n";
+
+            fitness_parents.clear();
+            fitness_parents.shrink_to_fit();
+            fitness_offspring.clear();
+            fitness_offspring.shrink_to_fit();
+            for (int i = 0; i < populationSize; i++) {
+                fitness_parents.push_back(ValueMax(parents[i], individualSize));
+                fitness_offspring.push_back(ValueMax(offspring[i], individualSize));
+            }
+        
+            fitness_pool = fitness_parents;
+            fitness_pool.insert(fitness_pool.end(), fitness_offspring.begin(), fitness_offspring.end());
+            
+            // Mutation(pool, fitness_pool, populationSize * 2, individualSize, probMutation);
+            TournamentSelection(parents, fitness_parents, pool, fitness_pool, populationSize);
+            
+            ep++;
+        }
+
+        cout << inp[file_index] << "\n";
+        for (int j = 0; j < individualSize; j++)
         cout << parents[0][j] << " ";
-    cout << " /-----/ ";
-    cout << fitness_parents[0] << "\n";
-    cout << ep << "\n";
+        cout << " /--> ";
+        cout << fitness_parents[0] << "\n";
+        cout << ep << "\n";
+        cout << "/---------------/\n\n";
+    }
 }

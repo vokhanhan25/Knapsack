@@ -1,0 +1,5 @@
+File name: data/00Uncorrelated/n00100/R10000/s005
+Number of items:100
+Total value: 421993
+Total weight:284297
+Runtime:0.0

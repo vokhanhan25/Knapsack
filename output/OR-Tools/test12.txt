@@ -1,0 +1,5 @@
+File name: data/01WeaklyCorrelated/n01000/R10000/s027
+Number of items:1000
+Total value: 2845831
+Total weight:2589032
+Runtime:0.024301528930664062

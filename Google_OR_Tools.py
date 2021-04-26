@@ -1,6 +1,6 @@
 from ortools.algorithms import pywrapknapsack_solver
 import data
-# import data
+import time
 
 def main():
     
@@ -11,7 +11,7 @@ def main():
         KNAPSACK_MULTIDIMENSION_BRANCH_AND_BOUND_SOLVER, 'KnapsackExample')
 
     for file_name in range(len(inp)):
-        print('File name: ' + inp[file_name])
+        
         with open(inp[file_name] + ".kp") as inp_file:
             read_file = inp_file.read().split('\n')
             
@@ -26,24 +26,33 @@ def main():
             values.append((int)(x))
             weights[0].append((int)(y))
 
+        start_time = time.time()
         solver.set_time_limit(300)
         solver.Init(values, weights, capacities)
-    
+        
         computed_value = solver.Solve()
+        
+        time_step = time.time() - start_time
 
-        packed_items = []
-        packed_weights = []
+        # packed_items = []
+        # packed_weights = []
         total_weight = 0
-        print('Total value =', computed_value)
+
         for i in range(len(values)):
-            if solver.BestSolutionContains(i):
-                packed_items.append(i)
-                packed_weights.append(weights[0][i])
-                total_weight += weights[0][i]
-        print('Total weight:', total_weight)
-        # print('Packed items:', packed_items)
-        # print('Packed_weights:', packed_weights)
-        print('/--------------------------/\n\n')
+                if solver.BestSolutionContains(i):
+                    # packed_items.append(i)
+                    # packed_weights.append(weights[0][i])
+                    total_weight += weights[0][i]
+        with open("output/OR-Tools/test" + str(file_name) +".txt", "w") as output_file:
+            output_file.write('File name: ' + inp[file_name] + "\n")
+            output_file.write ('Number of items:' + str(number_items) + "\n")
+            output_file.write('Total value: ' + str(computed_value) + "\n")
+            
+            output_file.write('Total weight:' +  str(total_weight) + "\n")
+            output_file.write('Runtime:' + str(time_step) + "\n")
+            # print('Packed items:', packed_items)
+            # print('Packed_weights:', packed_weights)
+            # print('/--------------------------/\n\n')
     
 if __name__ == '__main__':
     main()

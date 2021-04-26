@@ -1,0 +1,5 @@
+File name: data/02StronglyCorrelated/n00100/R10000/s005
+Number of items:100
+Total value: 318198
+Total weight:246198
+Runtime:0.0
