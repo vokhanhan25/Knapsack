@@ -1,5 +1,6 @@
 File name: data/01WeaklyCorrelated/n05000/R10000/s008
-Number of items:5000
+Number of items: 5000
 Total value: 13619437
-Total weight:12330793
-Runtime:0.12164640426635742
+Total weight: 12330793
+Capacity: 12330796
+Runtime: 111.87458038330078miliseconds

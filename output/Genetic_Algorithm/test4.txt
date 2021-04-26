@@ -1,0 +1,8 @@
+File name: data/00Uncorrelated/n01000/R10000/s027.kp
+Number of items: 1000
+Total value: 4174005
+Total weight: 2464622
+Capacity: 2464705
+Runtime: 110913 miliseconds
+Crossing: Uniform Crossover
+Itertations: 234

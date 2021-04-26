@@ -2,10 +2,13 @@
 #include <vector>
 #include <time.h>
 #include <stdlib.h>
+#include <string>
 #include <random>
 #include <bits/stdc++.h>
 #include "data.cpp"
+#include <chrono>
 
+using namespace std::chrono;
 using namespace std;
 
 int myrandom (int i) { return std::rand()%i;}
@@ -52,6 +55,28 @@ vector<vector<int>> OnepointCrossover(vector<vector<int>> a, const int &m, const
     }
     return b;
 }
+
+vector<vector<int>> TwopointCrossover(vector<vector<int>> a, const int &m, const int &n) {
+    vector<vector<int>> b = a;
+    int i = 0;
+    while (i < m - 1) {
+        int randNum1 = rand() % ((n - 1) - 1 + 1) + 1;
+        int randNum2 = rand() % ((n - 2) - 1 + 1);
+        if (randNum2 >= randNum1)
+            randNum2 += 1;
+        else
+            swap(randNum1, randNum2);
+
+        for (int j = randNum1; j < randNum2; j++) {
+            int tm = b[i][j];
+            b[i][j] = b[i + 1][j];
+            b[i + 1][j] = tm;
+        }
+        i += 2;
+    }
+    return b;
+}
+
 
 vector<vector<int>> UniformCrossover(vector<vector<int>> a, const int &m, const int &n) {
     vector<vector<int>> b = a;
@@ -163,7 +188,10 @@ int main() {
             values.push_back(v);
             weights.push_back(w);
         }
-        populationSize = individualSize * 5;
+        if (individualSize < 10000)
+            populationSize = individualSize * 10;
+        else 
+            populationSize = individualSize * 5;
         // return 0;
         vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
 
@@ -173,17 +201,12 @@ int main() {
         srand (time(NULL));
         Generate(parents, populationSize, individualSize);
         int ep = 0;
+        auto start = high_resolution_clock::now();
         while(!CheckConvergence(parents, populationSize, individualSize)) {
             // offspring = OnepointCrossover(parents, populationSize, individualSize);
             offspring = UniformCrossover(parents, populationSize, individualSize);
             pool = Pool(parents, offspring);
-            // Print(parents, populationSize, individualSize);
-            // cout << "/--------/\n\n";
-
-            // for (int i = 0; i < populationSize; i++)
-            //     cout << fitness_parents[i] << " ";
-            // cout << "------------------\n";
-
+        
             fitness_parents.clear();
             fitness_parents.shrink_to_fit();
             fitness_offspring.clear();
@@ -201,13 +224,32 @@ int main() {
             
             ep++;
         }
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<seconds>(stop - start);
+        int computedValue = 0, indexIndividual = -1, totalWeight = 0;
+        for (int i = 0; i < populationSize; i++) 
+            if (fitness_parents[i] > computedValue) {
+                computedValue = fitness_parents[i];
+                indexIndividual = i;
+            }
+        
+        for (int j = 0; j < individualSize; j++) 
+            if (parents[indexIndividual][j] == 1)
+                totalWeight += weights[j];
 
-        cout << inp[file_index] << "\n";
-        for (int j = 0; j < individualSize; j++)
-        cout << parents[0][j] << " ";
-        cout << " /--> ";
-        cout << fitness_parents[0] << "\n";
-        cout << ep << "\n";
-        cout << "/---------------/\n\n";
+        string output_filename= "output/Genetic_Algorithm/test" + to_string(file_index) + ".txt";
+        // cout << output_filename << "\n";
+        char* outfile = &output_filename[0];
+        freopen(outfile, "w", stdout);
+        cout << "File name: " << inp[file_index] << "\n";
+        cout << "Number of items: " << individualSize << "\n";
+        cout << "Total value: " << computedValue << "\n";
+        cout << "Total weight: " << totalWeight << "\n";
+        cout << "Capacity: " << capacities << "\n";
+        cout << "Runtime: " << duration.count() << " seconds\n";
+        cout << "Crossing: Uniform Crossover\n";
+        // cout << "Crossing: Onepoint Crossover\n"; 
+        cout << "Itertations: " << ep << "\n";
+        // cout << "/---------------/\n\n";
     }
 }

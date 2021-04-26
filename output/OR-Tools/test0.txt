@@ -1,5 +1,6 @@
 File name: data/00Uncorrelated/n00050/R01000/s000
-Number of items:50
+Number of items: 50
 Total value: 20995
-Total weight:14721
-Runtime:0.0
+Total weight: 14721
+Capacity: 14778
+Runtime: 0.0miliseconds

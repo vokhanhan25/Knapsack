@@ -32,7 +32,7 @@ def main():
         
         computed_value = solver.Solve()
         
-        time_step = time.time() - start_time
+        time_step = (time.time() - start_time)
 
         # packed_items = []
         # packed_weights = []
@@ -45,11 +45,12 @@ def main():
                     total_weight += weights[0][i]
         with open("output/OR-Tools/test" + str(file_name) +".txt", "w") as output_file:
             output_file.write('File name: ' + inp[file_name] + "\n")
-            output_file.write ('Number of items:' + str(number_items) + "\n")
+            output_file.write ('Number of items: ' + str(number_items) + "\n")
             output_file.write('Total value: ' + str(computed_value) + "\n")
             
-            output_file.write('Total weight:' +  str(total_weight) + "\n")
-            output_file.write('Runtime:' + str(time_step) + "\n")
+            output_file.write('Total weight: ' +  str(total_weight) + "\n")
+            output_file.write('Capacity: ' + str(capacities[0]) + "\n")
+            output_file.write('Runtime: ' + str(time_step * 1000) + " miliseconds\n")
             # print('Packed items:', packed_items)
             # print('Packed_weights:', packed_weights)
             # print('/--------------------------/\n\n')

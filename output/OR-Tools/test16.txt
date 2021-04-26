@@ -1,5 +1,6 @@
 File name: data/02StronglyCorrelated/n00050/R01000/s000
-Number of items:50
+Number of items: 50
 Total value: 17539
-Total weight:14239
-Runtime:0.0159761905670166
+Total weight: 14239
+Capacity: 14239
+Runtime: 15.994787216186523miliseconds
