@@ -1,0 +1,6 @@
+File name: 01WeaklyCorrelated/n00050/R01000/s000
+Number of items: 50
+Total value: 15768
+Total weight: 14232
+Capacity: 14239
+Runtime: 0.0 seconds

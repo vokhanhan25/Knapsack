@@ -1,6 +1,0 @@
-File name: data/00Uncorrelated/n10000/R10000/s004
-Number of items: 10000
-Total value: 40383379
-Total weight: 24747417
-Capacity: 24747420
-Runtime: 511.9283199310303miliseconds
