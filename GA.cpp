@@ -173,7 +173,8 @@ int main() {
     int individualSize, populationSize, v, w;
     double probMutation = 0.01;
     for (int file_index = 0; file_index < 8; file_index++) {
-        char* file_name = &inp[file_index][0];
+        string file_name_tm = "data/" + inp[file_index] + ".kp";
+        char* file_name = &file_name_tm[0];
         freopen(file_name, "r", stdin);
         cin >> individualSize;
         cin >> capacities;
@@ -237,7 +238,7 @@ int main() {
             if (parents[indexIndividual][j] == 1)
                 totalWeight += weights[j];
 
-        string output_filename= "output/Genetic_Algorithm/test" + to_string(file_index) + ".txt";
+        string output_filename= "output/Genetic_Algorithm/" + inp[file_index] + ".txt";
         // cout << output_filename << "\n";
         char* outfile = &output_filename[0];
         freopen(outfile, "w", stdout);
