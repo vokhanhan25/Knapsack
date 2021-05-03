@@ -1,0 +1,9 @@
+File name: 04AlmostStronglyCorrelated/n01000/R10000/s027
+Number of items: 1000
+Total value: 3275325
+Total weight: 2589049
+Capacity: 2589061
+Runtime: 246 seconds
+Poluplation size: 10000
+Crossing: Uniform Crossover
+Itertations: 382

@@ -1,0 +1,9 @@
+File name: 10MultipleStronglyCorrelated/n05000/R10000/s008
+Number of items: 5000
+Total value: 18511731
+Total weight: 12328731
+Capacity: 12330792
+Runtime: 302 seconds
+Poluplation size: 10000
+Crossing: Uniform Crossover
+Itertations: 82

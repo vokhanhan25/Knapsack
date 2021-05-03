@@ -1,0 +1,6 @@
+File name: 09SpannerStronglyCorrelated/n00050/R01000/s000
+Number of items: 50
+Total value: 28440
+Total weight: 11540
+Capacity: 11546
+Runtime: 0.013621330261230469 seconds

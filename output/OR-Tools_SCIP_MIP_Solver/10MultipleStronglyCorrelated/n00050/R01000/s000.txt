@@ -1,0 +1,6 @@
+File name: 10MultipleStronglyCorrelated/n00050/R01000/s000
+Number of items: 50
+Total value: 21338
+Total weight: 14238
+Capacity: 14238
+Runtime: 0.019206762313842773 seconds

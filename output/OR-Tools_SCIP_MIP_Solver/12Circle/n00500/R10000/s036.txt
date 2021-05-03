@@ -1,0 +1,6 @@
+File name: 12Circle/n00500/R10000/s036
+Number of items: 500
+Total value: 84958962
+Total weight: 1274450
+Capacity: 1274469
+Runtime: 0.02372002601623535 seconds

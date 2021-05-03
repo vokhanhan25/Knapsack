@@ -1,0 +1,6 @@
+File name: 11ProfitCeiling/n05000/R10000/s008
+Number of items: 5000
+Total value: 12329199
+Total weight: 12329676
+Capacity: 12330796
+Runtime: 0.1319735050201416 seconds

@@ -1,0 +1,9 @@
+File name: 06UncorrelatedWithSimilarWeights/n00500/R10000/s036
+Number of items: 500
+Total value: 188579
+Total weight: 24712445
+Capacity: 24764813
+Runtime: 20 seconds
+Poluplation size: 5000
+Crossing: Uniform Crossover
+Itertations: 151

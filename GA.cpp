@@ -172,13 +172,12 @@ int main() {
     vector<string> inp = input_data();
     int individualSize, populationSize, v, w;
     double probMutation = 0.01;
-    for (int file_index = 0; file_index < 8; file_index++) {
+    for (int file_index = 0; file_index < inp.size(); file_index++) {
         string file_name_tm = "data/" + inp[file_index] + ".kp";
         char* file_name = &file_name_tm[0];
         freopen(file_name, "r", stdin);
         cin >> individualSize;
         cin >> capacities;
-        
         values.clear();
         values.shrink_to_fit();
         weights.clear();
@@ -189,21 +188,26 @@ int main() {
             values.push_back(v);
             weights.push_back(w);
         }
-        if (individualSize < 10000)
+        
+
+        if (individualSize < 5000)
             populationSize = individualSize * 10;
-        else 
-            populationSize = individualSize * 5;
-        // return 0;
+        else if (individualSize == 5000)
+            populationSize = 10000;
+        else
+            populationSize = 5000;
+        
         vector<vector<int>> parents(populationSize, vector<int>(individualSize , 0));
 
         vector<int> fitness_offspring, fitness_pool, fitness_parents;
         vector<vector<int>> offspring, pool;
-        
+        double time_step_in_iter;
         srand (time(NULL));
         Generate(parents, populationSize, individualSize);
         int ep = 0;
         auto start = high_resolution_clock::now();
-        while(!CheckConvergence(parents, populationSize, individualSize)) {
+        while(!CheckConvergence(parents, populationSize, individualSize) && time_step_in_iter < 300) {
+            // cout << "Running...\n"; 
             // offspring = OnepointCrossover(parents, populationSize, individualSize);
             offspring = UniformCrossover(parents, populationSize, individualSize);
             pool = Pool(parents, offspring);
@@ -224,6 +228,12 @@ int main() {
             TournamentSelection(parents, fitness_parents, pool, fitness_pool, populationSize);
             
             ep++;
+            auto stop_run = high_resolution_clock::now();
+            auto duaration_stop_run = duration_cast<seconds>(stop_run - start);
+            time_step_in_iter = duration<double>(duaration_stop_run).count();
+            // cout << time_step_in_iter << "\n";
+            // if (time_step_in_iter > 10)
+                // break;
         }
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<seconds>(stop - start);
@@ -238,16 +248,18 @@ int main() {
             if (parents[indexIndividual][j] == 1)
                 totalWeight += weights[j];
 
-        string output_filename= "output/Genetic_Algorithm/" + inp[file_index] + ".txt";
+        // string output_filename= "output/Genetic_Algorithm/" + inp[file_index] + ".txt";
         // cout << output_filename << "\n";
-        char* outfile = &output_filename[0];
-        freopen(outfile, "w", stdout);
+        // char* outfile = &output_filename[0];
+        // freopen(outfile, "w", stdout);
         cout << "File name: " << inp[file_index] << "\n";
         cout << "Number of items: " << individualSize << "\n";
+        
         cout << "Total value: " << computedValue << "\n";
         cout << "Total weight: " << totalWeight << "\n";
         cout << "Capacity: " << capacities << "\n";
         cout << "Runtime: " << duration.count() << " seconds\n";
+        cout << "Poluplation size: " << populationSize << "\n";
         cout << "Crossing: Uniform Crossover\n";
         // cout << "Crossing: Onepoint Crossover\n"; 
         cout << "Itertations: " << ep << "\n";

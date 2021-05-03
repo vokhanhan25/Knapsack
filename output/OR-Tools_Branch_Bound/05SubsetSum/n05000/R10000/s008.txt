@@ -1,0 +1,6 @@
+File name: 05SubsetSum/n05000/R10000/s008
+Number of items: 5000
+Total value: 12330796
+Total weight: 12330796
+Capacity: 12330796
+Runtime: 0.07549238204956055 seconds

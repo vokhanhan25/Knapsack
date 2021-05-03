@@ -1,0 +1,9 @@
+File name: 02StronglyCorrelated/n00100/R10000/s005
+Number of items: 100
+Total value: 314191
+Total weight: 246191
+Capacity: 246212
+Runtime: 0 seconds
+Poluplation size: 1000
+Crossing: Uniform Crossover
+Itertations: 77

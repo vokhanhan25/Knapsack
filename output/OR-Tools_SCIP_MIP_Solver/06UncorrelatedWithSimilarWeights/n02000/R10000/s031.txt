@@ -1,0 +1,6 @@
+File name: 06UncorrelatedWithSimilarWeights/n02000/R10000/s031
+Number of items: 2000
+Total value: 754841
+Total weight: 99049821
+Capacity: 99059520
+Runtime: 0.11352372169494629 seconds

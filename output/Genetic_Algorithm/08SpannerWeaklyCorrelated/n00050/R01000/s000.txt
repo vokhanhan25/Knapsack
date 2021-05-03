@@ -1,0 +1,9 @@
+File name: 08SpannerWeaklyCorrelated/n00050/R01000/s000
+Number of items: 50
+Total value: 10354
+Total weight: 11452
+Capacity: 11459
+Runtime: 0 seconds
+Poluplation size: 500
+Crossing: Uniform Crossover
+Itertations: 47

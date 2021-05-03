@@ -3,6 +3,7 @@ Number of items: 200
 Total value: 780437
 Total weight: 527802
 Capacity: 527980
-Runtime: 2 seconds
+Runtime: 1 seconds
+Poluplation size: 2000
 Crossing: Uniform Crossover
-Itertations: 69
+Itertations: 83

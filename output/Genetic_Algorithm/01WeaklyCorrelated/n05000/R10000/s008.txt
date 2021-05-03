@@ -1,0 +1,9 @@
+File name: 01WeaklyCorrelated/n05000/R10000/s008
+Number of items: 5000
+Total value: 12778722
+Total weight: 12328516
+Capacity: 12330796
+Runtime: 302 seconds
+Poluplation size: 10000
+Crossing: Uniform Crossover
+Itertations: 90

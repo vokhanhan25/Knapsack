@@ -1,6 +1,0 @@
-File name: 03InverseStronglyCorrelated/n00050/R01000/s000
-Number of items: 50
-Total value: 14914
-Total weight: 16714
-Capacity: 16714
-Runtime: 7.418893337249756 seconds

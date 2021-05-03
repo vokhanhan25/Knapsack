@@ -1,0 +1,9 @@
+File name: 12Circle/n10000/R10000/s004
+Number of items: 10000
+Total value: 1649971173
+Total weight: 24750842
+Capacity: 24750843
+Runtime: 132 seconds
+Poluplation size: 5000
+Crossing: Uniform Crossover
+Itertations: 35

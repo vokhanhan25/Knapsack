@@ -1,0 +1,9 @@
+File name: 07SpannerUncorrelated/n00050/R01000/s000
+Number of items: 50
+Total value: 13464
+Total weight: 4554
+Capacity: 4569
+Runtime: 0 seconds
+Poluplation size: 500
+Crossing: Uniform Crossover
+Itertations: 326

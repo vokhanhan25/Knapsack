@@ -1,0 +1,6 @@
+File name: 08SpannerWeaklyCorrelated/n00500/R10000/s036
+Number of items: 500
+Total value: 2598465
+Total weight: 836631
+Capacity: 836801
+Runtime: 0.12005829811096191 seconds

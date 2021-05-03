@@ -1,0 +1,6 @@
+File name: 07SpannerUncorrelated/n02000/R10000/s031
+Number of items: 2000
+Total value: 439926
+Total weight: 2678373
+Capacity: 2678451
+Runtime: 0.10578107833862305 seconds

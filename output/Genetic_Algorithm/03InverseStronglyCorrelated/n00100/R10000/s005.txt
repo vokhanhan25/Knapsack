@@ -1,0 +1,9 @@
+File name: 03InverseStronglyCorrelated/n00100/R10000/s005
+Number of items: 100
+Total value: 264701
+Total weight: 295701
+Capacity: 295717
+Runtime: 0 seconds
+Poluplation size: 1000
+Crossing: Uniform Crossover
+Itertations: 96

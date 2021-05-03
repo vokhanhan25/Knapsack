@@ -1,0 +1,9 @@
+File name: 09SpannerStronglyCorrelated/n01000/R10000/s027
+Number of items: 1000
+Total value: 4525670
+Total weight: 1695670
+Capacity: 1695676
+Runtime: 176 seconds
+Poluplation size: 10000
+Crossing: Uniform Crossover
+Itertations: 306

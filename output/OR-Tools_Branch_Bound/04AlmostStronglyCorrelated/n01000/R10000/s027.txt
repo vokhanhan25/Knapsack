@@ -1,0 +1,6 @@
+File name: 04AlmostStronglyCorrelated/n01000/R10000/s027
+Number of items: 1000
+Total value: 3283344
+Total weight: 2589061
+Capacity: 2589061
+Runtime: 300.1663782596588 seconds

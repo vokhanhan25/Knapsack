@@ -1,0 +1,9 @@
+File name: 05SubsetSum/n00500/R10000/s036
+Number of items: 500
+Total value: 1274465
+Total weight: 1274465
+Capacity: 1274469
+Runtime: 4 seconds
+Poluplation size: 5000
+Crossing: Uniform Crossover
+Itertations: 30

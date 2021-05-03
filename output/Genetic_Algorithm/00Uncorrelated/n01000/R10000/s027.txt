@@ -1,0 +1,9 @@
+File name: 00Uncorrelated/n01000/R10000/s027
+Number of items: 1000
+Total value: 4174057
+Total weight: 2464682
+Capacity: 2464705
+Runtime: 162 seconds
+Poluplation size: 10000
+Crossing: Uniform Crossover
+Itertations: 239

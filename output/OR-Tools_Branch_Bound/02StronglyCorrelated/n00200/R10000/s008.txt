@@ -1,0 +1,6 @@
+File name: 02StronglyCorrelated/n00200/R10000/s008
+Number of items: 200
+Total value: 627134
+Total weight: 485134
+Capacity: 485134
+Runtime: 300.0027379989624 seconds
